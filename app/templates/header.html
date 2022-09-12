@@ -1,0 +1,44 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+  <div
+    class="container-fluid d-flex align-items-center justify-content-between px-5"
+  >
+    <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <!-- <img src="../static/assets/img/logo.png" alt=""> -->
+      <h1>Yummy<span>.</span></h1>
+    </a>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a href="/home" id="home" class>Home</a></li>
+        <li><a href="/blog" id="blog" class>Blog</a></li>
+        <li><a href="/donate" id="donate" class>Donate</a></li>
+        <li><a href="/chefs" id="chefs" class>Chefs</a></li>
+        <li><a href="/aboutus" id="about" class>About</a></li>
+        <li><a href="/contactus" id="contact" class>Contact</a></li>
+        {% if 'username' in session %}
+        <li class="dropdown">
+          <a href="#"
+            ><span>{{session["username"]}}</span>
+            <i class="bi bi-chevron-down dropdown-indicator"></i
+          ></a>
+          <ul>
+            <li><a href="/editprofile">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+        {% else %}
+        <a class="btn-book-a-table" href="/login">Login</a>
+        {% endif %}
+        <li class="px-0">
+          <a class="btn-book-a-table" href="/requestChef">Hire a Chef</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- .navbar -->
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+  </div>
+</header>
+<!-- End Header -->

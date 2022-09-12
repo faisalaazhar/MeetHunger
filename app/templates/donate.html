@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Meet Hunger - Donate</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="" rel="icon" />
+  <link href="" rel="apple-touch-icon" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/main.css" rel="stylesheet" />
+
+  <!-- =======================================================
+    * Template Name: Yummy - v1.1.0
+    * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="home.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="static/img/logo.png" alt=""> -->
+        <h1>MeetHunger<span>.</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/aboutus">About</a></li>
+          <li><a href="#chefs">Find A Chef</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/donate">Donate</a></li>
+          <li><a href="/contactus">Contact</a></li>
+          {% if 'username' in session %}
+          <li class="dropdown">
+            <a href="#"><span>{{session["username"]}}</span>
+              <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="/editprofile">Profile</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <a class="btn-book-a-table" href="/login">Login</a>
+          {% endif %}
+        </ul>
+      </nav><!-- .navbar -->
+
+      <a class="btn-book-a-table" href="/requestChef">Request Chefs</a>
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+
+  <div class="py-4 my-3"></div>
+
+  <!-- ======= Testimonials Section ======= -->
+  <section id="testimonials" class="testimonials section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>Donate Now</h2>
+        <p>Your Donation <span>Can Save Lives</span></p>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+          <a class="btn-book-a-table" href="#donate-food">Donate Food</a>
+        </div>
+        <div class="col-md-3">
+          <a class="btn-book-a-table" href="#donate-money">Donate Money</a>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </section>
+  <!-- Donate form start -->
+  <section id="donate-money" class="book-a-table pb-0">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>Donate Money Now</h2>
+        <p>Donate Money To help us <span>buy more food</span></p>
+      </div>
+    
+      <div class="row g-0 d-flex align-items-center">
+        <div class="col reservation-form-bg">
+          <form action="{{url_for('donate')}}" method="POST" data-aos="fade-up">
+            <div class="row gy-4 text-center">
+              <p>The money you doante will goes to our monthly donation fund</p>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <input type="number" name="amount" class="form-control" placeholder="Amount, ex: $10, $20, ..." />
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+            </div>
+            <div class="text-center">
+              <button class="my-5" type="submit" name="btn" value="#">Donate Now</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Donate Form -->
+      </div>
+    </div>
+  </section>
+
+  <section id="donate-food" class="book-a-table pb-0">
+    <div class="container" data-aos="fade-up">
+      <div class="section-header">
+        <h2>Donate Food Now</h2>
+        <p>Donate Food To <span>serve more food</span></p>
+      </div>
+
+      <div class="row g-0 d-flex align-items-center">
+        <div class="col reservation-form-bg">
+          <form action="{{url_for('donate')}}" method="POST" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4 text-center">
+              <label>Enter the information of when you want to donate and your
+                location.</label>
+              <p>Our volunteer will recived the food</p>
+              <div class="col-lg-2 col-md-2"></div>
+              <div class="col-lg-4 col-md-4">
+                <input type="date" name="date" class="form-control" id="form-control" placeholder="Food Expiry Date" />
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <input type="text" name="location" class="form-control" placeholder="Your Location" />
+              </div>
+              <div class="col-lg-2 col-md-2"></div>
+            </div>
+            <div class="text-center">
+              <button class="my-5" type="submit" name="btn" value="*">Donate Now</button>
+            </div>
+          </form>
+        </div>
+        <!-- End Donate Form -->
+      </div>
+    </div>
+  </section>
+  <!-- End Testimonials Section -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div>
+            <h4>Address</h4>
+            <p>
+              Aftabnagar, Dhaka
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact Info</h4>
+            <p>
+              <strong>Phone:</strong> 01780989671<br>
+              <strong>Email:</strong> meet.hunger479@gmail.com<br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              Open 24 hours a day, 7 days a week
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>MeetHunger</span></strong>. All Rights Reserved
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/aos/aos.js"></script>
+  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../static/vendor/php-email-form/validate.js"></script>
+  <script>
+    document.getElementById('donate').className = 'active'
+  </script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/js/main.js"></script>
+</body>
+
+</html>
