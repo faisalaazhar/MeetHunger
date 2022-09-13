@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>Meet Hunger - Chefs</title>
+  <head>
+    <title>Chef Signup</title>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -17,18 +16,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Vendor CSS Files -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link
+      href="../static/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../static/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <link href="../static/vendor/aos/aos.css" rel="stylesheet" />
-    <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-    <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="../static/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../static/vendor/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- Template Main CSS File -->
     <link href="../static/css/main.css" rel="stylesheet" />
@@ -39,63 +55,179 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
-</head>
+  </head>
 
-<body>
-    {% include "header.html" %}
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="../static/img/logo.png" alt=""> -->
+          <h1>Meet<span>Hunger.</span></h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/findachef" id="chefs">Find A Chef</a></li>
+            <li><a href="/donate">Donate</a></li>
+            <li><a href="/aboutus">About</a></li>
+            <li><a href="/contactus">Contact</a></li>
+            {% if 'username' in session %}
+            <li class="dropdown">
+              <a href="#"
+                ><span>{{session["username"]}}</span>
+                <i class="bi bi-chevron-down dropdown-indicator"></i
+              ></a>
+              <ul>
+                <li><a href="/editprofile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <a class="btn-book-a-table" href="/login">Login</a>
+            {% endif %}
+          </ul>
+        </nav>
+        <!-- .navbar -->
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+    </header>
+    <!-- End Header -->
     <div class="py-4 my-3"></div>
 
     <!-- ======= Chef Section ======= -->
     <section class="book-a-table pb-0 reservation-form-bg">
-        <div class="container">
-            <div class="section-header pb-0">
-                <h2>A great chef has to be passionate about food and cooking.</h2>
-                <p>Add Your <span>Chef</span> Information</p>
-            </div>
-
-            <div class="row g-0 d-flex align-items-center">
-                <!--Start Form-->
-                <form action="/joinaschef" method="post" class="php-email-form">
-                    <div class="row gy-4">
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="city" class="form-control" placeholder="Enter your city name" />
-                        </div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="skills" class="form-control" placeholder="Skills  (use ' , ' for multiple skills)" />
-                        </div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="location" class="form-control" placeholder="Area Location" />
-                        </div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" name="workex" class="form-control" placeholder="Work Experience" />
-                        </div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6"></div>
-                        <div class="col-lg-4 col-md-6">
-                            <textarea type="text" name="description" class="form-control" placeholder="short description about you..."></textarea>
-                        </div>
-                        <div class="col-lg-4 col-md-6"></div>
-                    </div>
-                    <div class="text-center">
-                        <button class="my-5" type="submit">Create</button>
-                    </div>
-                </form>
-                <!-- End Form -->
-            </div>
+      <div class="container">
+        <div class="section-header pb-0">
+          <h2>A great chef has to be passionate about food and cooking.</h2>
+          <p>Add Your <span>Chef</span> Information</p>
         </div>
+
+        <div class="row g-0 d-flex align-items-center">
+          <!--Start Form-->
+          <form action="/joinaschef" method="post" class="php-email-form">
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <input
+                  type="text"
+                  name="city"
+                  class="form-control"
+                  placeholder="Enter your city name"
+                />
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <input
+                  type="text"
+                  name="skills"
+                  class="form-control"
+                  placeholder="Skills  (use ' , ' for multiple skills)"
+                />
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <input
+                  type="text"
+                  name="location"
+                  class="form-control"
+                  placeholder="Area Location"
+                />
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <input
+                  type="text"
+                  name="workex"
+                  class="form-control"
+                  placeholder="Work Experience"
+                />
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6"></div>
+              <div class="col-lg-4 col-md-6">
+                <textarea
+                  type="text"
+                  name="description"
+                  class="form-control"
+                  placeholder="short description about you..."
+                ></textarea>
+              </div>
+              <div class="col-lg-4 col-md-6"></div>
+            </div>
+            <div class="text-center">
+              <button class="my-5" type="submit">Create</button>
+            </div>
+          </form>
+          <!-- End Form -->
+        </div>
+      </div>
     </section>
 
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="row gy-3">
+          <div class="col-lg-3 col-md-6 d-flex">
+            <i class="bi bi-geo-alt icon"></i>
+            <div>
+              <h4>Address</h4>
+              <p>Aftabnagar, Dhaka</p>
+            </div>
+          </div>
 
-    {% include "footer.html" %}
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+          <div class="col-lg-3 col-md-6 footer-links d-flex">
+            <i class="bi bi-telephone icon"></i>
+            <div>
+              <h4>Contact Info</h4>
+              <p>
+                <strong>Phone:</strong> 01780989671<br />
+                <strong>Email:</strong> meet.hunger479@gmail.com<br />
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links d-flex">
+            <i class="bi bi-clock icon"></i>
+            <div>
+              <h4>Opening Hours</h4>
+              <p>Open 24 hours a day, 7 days a week</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Follow Us</h4>
+            <div class="social-links d-flex">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>MeetHunger</span></strong
+          >. All Rights Reserved
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <a
+      href="#"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
 
     <div id="preloader"></div>
 
@@ -106,11 +238,10 @@
     <script src="../static/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
     <script>
-        document.getElementById('chefs').className = 'active'
+      document.getElementById('chefs').className = 'active'
     </script>
 
     <!-- Template Main JS File -->
     <script src="../static/js/main.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,8 +1,8 @@
 from app import *
 
+
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
     if "username" in session:
         session.pop("username", None)
-
-    return redirect(url_for("login"))
+    return redirect("/")

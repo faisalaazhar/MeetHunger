@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Meet Hunger - Chefs</title>
+    <title>MeetHunger - Chefs</title>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -58,7 +58,47 @@
   </head>
 
   <body>
-    {% include "header.html" %}
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="../static/img/logo.png" alt=""> -->
+          <h1>Meet<span>Hunger.</span></h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/findachef" id="findachef">Find A Chef</a></li>
+            <li><a href="/donate">Donate</a></li>
+            <li><a href="/aboutus">About</a></li>
+            <li><a href="/contactus">Contact</a></li>
+            {% if 'username' in session %}
+            <li class="dropdown">
+              <a href="#"
+                ><span>{{session["username"]}}</span>
+                <i class="bi bi-chevron-down dropdown-indicator"></i
+              ></a>
+              <ul>
+                <li><a href="/editprofile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <a class="btn-book-a-table" href="/login">Login</a>
+            {% endif %}
+            <a class="btn-book-a-table" href="/joinaschef">Join as a Chef</a>
+          </ul>
+        </nav>
+        <!-- .navbar -->
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+    </header>
+    <!-- End Header -->
     <div class="py-4 my-3"></div>
 
     <!-- ======= Chef Section ======= -->
@@ -79,6 +119,7 @@
                   type="text"
                   name="city"
                   class="form-control"
+                  required
                   placeholder="Enter a city name"
                 />
               </div>
@@ -132,10 +173,8 @@
               <div class="member-info">
                 <h4>{{name[x]}}</h4>
 
-                <p>Skills : <br /><b>City: </b>{{city[x]}}</p>
-                <p>
-                  {{description[x]}}
-                </p>
+                <p><b<Skills :</b> {{skill[x]}}<br /><b>City: </b>{{city[x]}}</p>
+                <p>{{description[x]}}</p>
                 <a href="/findachef/{{name[x]}}" class="readmore"
                   >Contact Info<i class="fa fa-angle-right"></i
                 ></a>
@@ -165,7 +204,7 @@
     <script src="../static/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
     <script>
-      document.getElementById('chefs').className = 'active'
+      document.getElementById('findachef').className = 'active'
     </script>
 
     <!-- Template Main JS File -->

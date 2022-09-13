@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Meet Hunger - Your Desire Chef</title>
+    <title>MeetHunger - Blog</title>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -59,46 +59,57 @@
 
   <body>
     <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center me-auto me-lg-0">
+          <!-- Uncomment the line below if you also wish to use an image logo -->
+          <!-- <img src="../static/img/logo.png" alt=""> -->
+          <h1>Meet<span>Hunger.</span></h1>
+        </a>
 
-      <a href="home.html" class="logo d-flex align-items-center me-auto me-lg-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="static/img/logo.png" alt=""> -->
-        <h1>MeetHunger<span>.</span></h1>
-      </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog" id="blog">Blog</a></li>
+            <li><a href="/findachef">Find A Chef</a></li>
+            <li><a href="/donate">Donate</a></li>
+            <li><a href="/aboutus">About</a></li>
+            <li><a href="/contactus">Contact</a></li>
+            {% if 'username' in session %}
+            <li class="dropdown">
+              <a href="#"
+                ><span>{{session["username"]}}</span>
+                <i class="bi bi-chevron-down dropdown-indicator"></i
+              ></a>
+              <ul>
+                <li><a href="/editprofile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <a class="btn-book-a-table" href="/login">Login</a>
+            {% endif %}
+            <a class="btn-book-a-table" href="/joinaschef">Join as a Chef</a>
+          </ul>
+        </nav>
+        <!-- .navbar -->
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="/home">Home</a></li>
-          <li><a href="/aboutus">About</a></li>
-          <li><a href="#chefs">Find A Chef</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/donate">Donate</a></li>
-          <li><a href="/contactus">Contact</a></li>
-          {% if 'username' in session %}
-          <li class="dropdown">
-            <a href="#"><span>{{session["username"]}}</span>
-              <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="/editprofile">Profile</a></li>
-              <li><a href="/logout">Logout</a></li>
-            </ul>
-          </li>
-          {% else %}
-          <a class="btn-book-a-table" href="/login">Login</a>
-          {% endif %}
-        </ul>
-      </nav><!-- .navbar -->
-
-      <a class="btn-book-a-table" href="/requestChef">Request Chefs</a>
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-    </div>
-  </header><!-- End Header -->
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+      </div>
+    </header>
+    <!-- End Header -->
 
     <div class="py-4 my-3"></div>
+    <section id="about" class="about section-bg">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Blogs</h2>
+          <p>Learn About <span>People's Thoughts</span></p>
+          <a class="btn-book-a-table mt-2" href="/addblog">Post a Blog</a>
+        </div>
+      </div>
+    </section>
     <!-- single blog card-->
     <div class="container-fluid">
       <div class="row">
@@ -119,11 +130,11 @@
             <div class="blog-text">
               <h5>{{title[x]}}</h5>
               <span>By {{username[x]}}</span>
-              <p>
-                {{des[x]}}
-              </p>
+              <p>{{des[x]}}</p>
               <a href="#" class="comment">2 Comments</a>
-              <a href="/showblog/{{blog_pic[x]}}" class="readmore"><i class="fa fa-angle-right"></i></a>
+              <a href="/showblog/{{blog_pic[x]}}" class="readmore"
+                ><i class="fa fa-angle-right"></i
+              ></a>
             </div>
           </div>
         </div>
@@ -134,62 +145,56 @@
     <!-- single blog card end-->
 
     <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-3 col-md-6 d-flex">
-          <i class="bi bi-geo-alt icon"></i>
-          <div>
-            <h4>Address</h4>
-            <p>
-              Aftabnagar, Dhaka
-            </p>
+    <footer id="footer" class="footer">
+      <div class="container">
+        <div class="row gy-3">
+          <div class="col-lg-3 col-md-6 d-flex">
+            <i class="bi bi-geo-alt icon"></i>
+            <div>
+              <h4>Address</h4>
+              <p>Aftabnagar, Dhaka</p>
+            </div>
           </div>
 
-        </div>
+          <div class="col-lg-3 col-md-6 footer-links d-flex">
+            <i class="bi bi-telephone icon"></i>
+            <div>
+              <h4>Contact Info</h4>
+              <p>
+                <strong>Phone:</strong> 01780989671<br />
+                <strong>Email:</strong> meet.hunger479@gmail.com<br />
+              </p>
+            </div>
+          </div>
 
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-telephone icon"></i>
-          <div>
-            <h4>Contact Info</h4>
-            <p>
-              <strong>Phone:</strong> 01780989671<br>
-              <strong>Email:</strong> meet.hunger479@gmail.com<br>
-            </p>
+          <div class="col-lg-3 col-md-6 footer-links d-flex">
+            <i class="bi bi-clock icon"></i>
+            <div>
+              <h4>Opening Hours</h4>
+              <p>Open 24 hours a day, 7 days a week</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Follow Us</h4>
+            <div class="social-links d-flex">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
           </div>
         </div>
-
-        <div class="col-lg-3 col-md-6 footer-links d-flex">
-          <i class="bi bi-clock icon"></i>
-          <div>
-            <h4>Opening Hours</h4>
-            <p>
-              Open 24 hours a day, 7 days a week
-            </p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Follow Us</h4>
-          <div class="social-links d-flex">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>MeetHunger</span></strong>. All Rights Reserved
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>MeetHunger</span></strong
+          >. All Rights Reserved
+        </div>
       </div>
-    </div>
-
-  </footer><!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
     <a
       href="#"
       class="scroll-top d-flex align-items-center justify-content-center"

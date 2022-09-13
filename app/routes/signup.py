@@ -1,6 +1,6 @@
 from app import *
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/signup',methods=['GET','POST'])
 def signup():
     message = ''
 
